@@ -1,0 +1,20 @@
+﻿services:
+  postgres:
+    image: postgres:16
+    container_name: vsm_postgres
+    environment:
+      POSTGRES_USER: vsm
+      POSTGRES_PASSWORD: vsm
+      POSTGRES_DB: vsm_restaurant
+    ports:
+      - "5432:5432"
+    volumes:
+      - vsm_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vsm -d vsm_restaurant"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  vsm_pgdata:
