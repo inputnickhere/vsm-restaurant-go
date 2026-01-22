@@ -13,9 +13,13 @@ type Config struct {
 	DBName string
 	DBUser string
 	DBPass string
+
+	StaticToken   string
+	SupplierToken string
 }
 
 func MustLoad() Config {
+
 	cfg := Config{
 		Port: getenv("APP_PORT", "8080"),
 
@@ -24,6 +28,9 @@ func MustLoad() Config {
 		DBName: getenv("DB_NAME", "vsm_restaurant"),
 		DBUser: getenv("DB_USER", "vsm"),
 		DBPass: getenv("DB_PASSWORD", "vsm"),
+
+		StaticToken:   getenv("STATIC_TOKEN", "changeme"),
+		SupplierToken: getenv("SUPPLIER_TOKEN", "changeme_supplier"),
 	}
 
 	if cfg.Port == "" {

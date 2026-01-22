@@ -20,7 +20,7 @@ func main() {
 	pool := db.MustConnect(cfg)
 	defer pool.Close()
 
-	handler := apphttp.NewRouter(pool)
+	handler := apphttp.NewRouter(pool, cfg.StaticToken, cfg.SupplierToken)
 
 	addr := ":" + cfg.Port
 	log.Printf("listening on %s", addr)
